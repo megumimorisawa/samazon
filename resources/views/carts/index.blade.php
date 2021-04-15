@@ -36,8 +36,8 @@
             <div class="col-md-2">
                 <h3 class="w-100 mt-4">￥{{$product->qty * $product->price}}</h3>
             </div>
-            @endforeach            
         </div>
+        @endforeach
 
         <hr>
 
@@ -54,14 +54,33 @@
                 </div>
             </div>
         </div>
+
         <form method="post" action="{{route('carts.destroy')}}" class="d-flex justify-content-end mt-3">
             {{ csrf_field() }}
             <input type="hidden" name="_method" value="DELETE">
             <a href="/" class="btn samazon-favorite-button border-dark text-dark mr-3">
                 買い物を続ける
             </a>
-            <button type="submit" class="btn samazon-submit-button">購入を確定する</button>
+           <div class="btn samazon-submit-button" data-toggle="modal" data-target="#buy-confirm-modal">購入を確定する</div>
+
+           <div class="modal fade" id="buy-confirm-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+               <div class="modal-dialog">
+                   <div class="modal-content">
+                       <div class="modal-header">
+                           <h5 class="modal-title" id="staticBackdropLabel">購入を確定しますか？</h5>
+                           <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                               <span aria-hidden="true">&times;</span>
+                           </button>
+                       </div>
+                       <div class="modal-footer">
+                           <button type="button" class="btn samazon-favorite-button border-dark text-dark" data-dismiss="modal">閉じる</button>
+                           <button type="submit" class="btn samazon-submit-button">購入</button>
+                       </div>
+                   </div>
+               </div>
+           </div>
         </form>
+
     </div>
 </div>
 @endsection
